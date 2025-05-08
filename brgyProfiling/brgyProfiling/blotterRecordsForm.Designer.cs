@@ -43,12 +43,12 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.deleteBtn = new System.Windows.Forms.Button();
-            this.editBtn = new System.Windows.Forms.Button();
             this.addBtn = new System.Windows.Forms.Button();
+            this.blotterTableview = new System.Windows.Forms.DataGridView();
             this.sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.blotterTableview)).BeginInit();
             this.SuspendLayout();
             // 
             // sidePanel
@@ -198,17 +198,19 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.blotterTableview);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.addBtn);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(314, 44);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(765, 577);
+            this.panel1.Size = new System.Drawing.Size(916, 641);
             this.panel1.TabIndex = 2;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(519, 25);
+            this.textBox1.Location = new System.Drawing.Point(288, 25);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(203, 22);
             this.textBox1.TabIndex = 3;
@@ -217,7 +219,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(452, 29);
+            this.label3.Location = new System.Drawing.Point(221, 29);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 18);
             this.label3.TabIndex = 2;
@@ -234,51 +236,37 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Blotter Records";
             // 
-            // deleteBtn
-            // 
-            this.deleteBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.deleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.deleteBtn.Location = new System.Drawing.Point(891, 681);
-            this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(186, 43);
-            this.deleteBtn.TabIndex = 15;
-            this.deleteBtn.Text = "Delete";
-            this.deleteBtn.UseVisualStyleBackColor = false;
-            // 
-            // editBtn
-            // 
-            this.editBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.editBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.editBtn.Location = new System.Drawing.Point(602, 681);
-            this.editBtn.Name = "editBtn";
-            this.editBtn.Size = new System.Drawing.Size(186, 43);
-            this.editBtn.TabIndex = 14;
-            this.editBtn.Text = "Edit";
-            this.editBtn.UseVisualStyleBackColor = false;
-            // 
             // addBtn
             // 
             this.addBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.addBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.addBtn.Location = new System.Drawing.Point(312, 681);
+            this.addBtn.Location = new System.Drawing.Point(687, 14);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(186, 43);
             this.addBtn.TabIndex = 13;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = false;
             // 
+            // blotterTableview
+            // 
+            this.blotterTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.blotterTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.blotterTableview.Location = new System.Drawing.Point(24, 83);
+            this.blotterTableview.Name = "blotterTableview";
+            this.blotterTableview.RowHeadersWidth = 51;
+            this.blotterTableview.RowTemplate.Height = 24;
+            this.blotterTableview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.blotterTableview.Size = new System.Drawing.Size(869, 531);
+            this.blotterTableview.TabIndex = 14;
+            this.blotterTableview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.blotterTableview_CellContentClick);
+            // 
             // blotterRecordsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1095, 819);
-            this.Controls.Add(this.deleteBtn);
-            this.Controls.Add(this.editBtn);
-            this.Controls.Add(this.addBtn);
+            this.ClientSize = new System.Drawing.Size(1242, 803);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.sidePanel);
             this.Name = "blotterRecordsForm";
@@ -289,6 +277,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.blotterTableview)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -310,8 +299,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button deleteBtn;
-        private System.Windows.Forms.Button editBtn;
         private System.Windows.Forms.Button addBtn;
+        private System.Windows.Forms.DataGridView blotterTableview;
     }
 }

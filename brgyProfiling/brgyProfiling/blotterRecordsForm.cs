@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace brgyProfiling
 {
@@ -15,8 +16,39 @@ namespace brgyProfiling
         public blotterRecordsForm()
         {
             InitializeComponent();
+            LoadBlotterRecordsData();
         }
+        private void LoadBlotterRecordsData()
+        {
+            try
+            {
+                // SQL query to fetch business permits data
+                string query = "SELECT * FROM blotterrecords";
 
+                // Use the conn class to establish a connection
+                using (MySqlConnection connection = Conn.GetConnection())
+                {
+                    connection.Open();
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        {
+                            DataTable blotterRecordsData = new DataTable();
+                            adapter.Fill(blotterRecordsData);
+
+                            // Bind the data to the DataGridView
+                            blotterTableview.DataSource = blotterRecordsData;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading business permits data: " + ex.Message,
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void residentsBtn_Click(object sender, EventArgs e)
         {
             residentsForm resForm = new residentsForm();
@@ -79,6 +111,11 @@ namespace brgyProfiling
                 loginForm.Show();
                 this.Hide();
             }
+        }
+
+        private void blotterTableview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -206,7 +206,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(314, 44);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(916, 577);
+            this.panel1.Size = new System.Drawing.Size(916, 628);
             this.panel1.TabIndex = 2;
             // 
             // textBox1
@@ -254,7 +254,7 @@
             // 
             this.permitsTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.permitsTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.permitsTableview.Location = new System.Drawing.Point(24, 66);
+            this.permitsTableview.Location = new System.Drawing.Point(24, 121);
             this.permitsTableview.Name = "permitsTableview";
             this.permitsTableview.RowHeadersWidth = 51;
             this.permitsTableview.RowTemplate.Height = 24;
