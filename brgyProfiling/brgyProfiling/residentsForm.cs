@@ -127,19 +127,111 @@ namespace brgyProfiling
             this.Hide(); // Hide the current residentsForm
         }
 
-        private void editBtn_Click(object sender, EventArgs e)
-        {
-        }
-
-
         private void deleteBtn_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Check if a row is selected
+                if (residentTableview.SelectedRows.Count > 0)
+                {
+                    // Get the selected resident's ID (assuming the primary key is in the first column)
+                    string selectedResidentId = residentTableview.SelectedRows[0].Cells[0].Value.ToString();
 
+                    // Confirm deletion
+                    DialogResult result = MessageBox.Show("Are you sure you want to delete this resident?",
+                                                          "Delete Confirmation",
+                                                          MessageBoxButtons.YesNo,
+                                                          MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        // SQL query to delete the resident
+                        string query = "DELETE FROM residents WHERE resID = @resID";
+
+                        using (MySqlConnection connection = Conn.GetConnection())
+                        {
+                            connection.Open();
+
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
+                            {
+                                // Add parameter to prevent SQL injection
+                                command.Parameters.AddWithValue("@resID", selectedResidentId);
+
+                                // Execute the query
+                                int rowsAffected = command.ExecuteNonQuery();
+
+                                if (rowsAffected > 0)
+                                {
+                                    MessageBox.Show("Resident deleted successfully!", "Success",
+                                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    // Refresh the DataGridView
+                                    LoadResidentsData();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Failed to delete the resident.", "Error",
+                                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a resident to delete.", "No Selection",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Display an error message if something goes wrong
+                MessageBox.Show("Error deleting resident: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void residentTableview_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+        private void search_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Check if a row is selected
+                if (residentTableview.SelectedRows.Count > 0)
+                {
+                    // Get the selected resident's ID (assuming the primary key is in the first column)
+                    string selectedResidentId = residentTableview.SelectedRows[0].Cells[0].Value.ToString();
+
+                    // Pass the selected resident's ID to the updateresidents form
+                    updateresidents updateForm = new updateresidents(selectedResidentId);
+                    updateForm.ShowDialog();
+
+                    // Refresh the DataGridView after editing
+                    LoadResidentsData();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a resident to edit.", "No Selection",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Display an error message if something goes wrong
+                MessageBox.Show("Error editing resident: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
     }
 }

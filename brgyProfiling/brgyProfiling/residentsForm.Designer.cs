@@ -41,7 +41,7 @@
             this.residentsBtn = new System.Windows.Forms.Button();
             this.residentsPanel = new System.Windows.Forms.Panel();
             this.residentTableview = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.search = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.addBtn = new System.Windows.Forms.Button();
@@ -201,7 +201,7 @@
             // 
             this.residentsPanel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.residentsPanel.Controls.Add(this.residentTableview);
-            this.residentsPanel.Controls.Add(this.textBox1);
+            this.residentsPanel.Controls.Add(this.search);
             this.residentsPanel.Controls.Add(this.label3);
             this.residentsPanel.Controls.Add(this.label2);
             this.residentsPanel.Location = new System.Drawing.Point(312, 43);
@@ -222,12 +222,13 @@
             this.residentTableview.TabIndex = 4;
             this.residentTableview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.residentTableview_CellContentClick);
             // 
-            // textBox1
+            // search
             // 
-            this.textBox1.Location = new System.Drawing.Point(519, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(203, 22);
-            this.textBox1.TabIndex = 3;
+            this.search.Location = new System.Drawing.Point(519, 25);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(203, 22);
+            this.search.TabIndex = 3;
+            this.search.TextChanged += new System.EventHandler(this.search_TextChanged);
             // 
             // label3
             // 
@@ -328,7 +329,7 @@
         private System.Windows.Forms.Button permitsBtn;
         private System.Windows.Forms.Panel residentsPanel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox search;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.Button editBtn;
