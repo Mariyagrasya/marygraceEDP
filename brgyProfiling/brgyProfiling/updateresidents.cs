@@ -148,8 +148,20 @@ namespace brgyProfiling
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            // Ask for confirmation before canceling
+            DialogResult result = MessageBox.Show("Are you sure you want to cancel?",
+                                                "Confirm Cancel",
+                                                MessageBoxButtons.YesNo,
+                                                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+
+                // Optionally redirect back to the blotter management form
+                residentsForm res = new residentsForm();
+                res.Show();
+                this.Close();
+            }
         }
 
         // TextChanged events remain empty if no special logic needed

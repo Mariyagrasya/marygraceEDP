@@ -131,5 +131,13 @@ namespace brgyProfiling
         {
 
         }
+
+        private void cancelBtn_Click_1(object sender, EventArgs e)
+        {
+            // Optionally redirect back to the blotter management form
+            brgyOfficialsForm staff = new brgyOfficialsForm();
+            staff.Show();
+            this.Close();
+        }
     }
 }
