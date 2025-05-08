@@ -118,19 +118,35 @@ namespace brgyProfiling
             }
         }
 
-        private void addBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void editBtn_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Check if a row is selected
+                if (officialsTableview.SelectedRows.Count > 0)
+                {
+                    // Get the selected resident's ID (assuming the primary key is in the first column)
+                    string selectedStaffId = officialsTableview.SelectedRows[0].Cells[0].Value.ToString();
 
-        }
+                    // Pass the selected resident's ID to the updateresidents form
+                    updateOfficials updateForm = new updateOfficials(selectedStaffId);
+                    updateForm.ShowDialog();
 
-        private void deleteBtn_Click(object sender, EventArgs e)
-        {
-
+                    // Refresh the DataGridView after editing
+                    LoadStaffData();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a staff to edit.", "No Selection",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Display an error message if something goes wrong
+                MessageBox.Show("Error editing staff: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void officialsTableview_CellContentClick(object sender, DataGridViewCellEventArgs e)
