@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace brgyProfiling
 {
@@ -15,8 +16,39 @@ namespace brgyProfiling
         public householdForm()
         {
             InitializeComponent();
+            LoadHouseholdData();
         }
+        private void LoadHouseholdData()
+        {
+            try
+            {
+                // SQL query to fetch all data from the household table
+                string query = "SELECT * FROM household";
 
+                // Use the conn class to establish a connection
+                using (MySqlConnection connection = Conn.GetConnection())
+                {
+                    connection.Open(); // Ensure the connection is open
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        {
+                            DataTable householdData = new DataTable();
+                            adapter.Fill(householdData); // Fill the DataTable with the query result
+
+                            // Bind the data to the DataGridView
+                            householdTableview.DataSource = householdData;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Display an error message if something goes wrong
+                MessageBox.Show("Error loading household data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void residentsBtn_Click(object sender, EventArgs e)
         {
             residentsForm resForm = new residentsForm();
@@ -79,6 +111,11 @@ namespace brgyProfiling
                 loginForm.Show();
                 this.Hide();
             }
+        }
+
+        private void officialsTableview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
