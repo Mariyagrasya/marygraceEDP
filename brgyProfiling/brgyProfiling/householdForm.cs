@@ -117,5 +117,13 @@ namespace brgyProfiling
         {
 
         }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+           
+            addHousehold addHouseholdForm = new addHousehold();
+            addHouseholdForm.Show();
+            this.Hide(); 
+        }
     }
 }

@@ -40,11 +40,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.residentsBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.blotterTableview = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.addBtn = new System.Windows.Forms.Button();
-            this.blotterTableview = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
             this.sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -208,6 +208,19 @@
             this.panel1.Size = new System.Drawing.Size(916, 641);
             this.panel1.TabIndex = 2;
             // 
+            // blotterTableview
+            // 
+            this.blotterTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.blotterTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.blotterTableview.Location = new System.Drawing.Point(24, 83);
+            this.blotterTableview.Name = "blotterTableview";
+            this.blotterTableview.RowHeadersWidth = 51;
+            this.blotterTableview.RowTemplate.Height = 24;
+            this.blotterTableview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.blotterTableview.Size = new System.Drawing.Size(869, 531);
+            this.blotterTableview.TabIndex = 14;
+            this.blotterTableview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.blotterTableview_CellContentClick);
+            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(288, 25);
@@ -225,17 +238,6 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Search";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(25, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(149, 22);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Blotter Records";
-            // 
             // addBtn
             // 
             this.addBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
@@ -247,19 +249,18 @@
             this.addBtn.TabIndex = 13;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = false;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
-            // blotterTableview
+            // label2
             // 
-            this.blotterTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.blotterTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.blotterTableview.Location = new System.Drawing.Point(24, 83);
-            this.blotterTableview.Name = "blotterTableview";
-            this.blotterTableview.RowHeadersWidth = 51;
-            this.blotterTableview.RowTemplate.Height = 24;
-            this.blotterTableview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.blotterTableview.Size = new System.Drawing.Size(869, 531);
-            this.blotterTableview.TabIndex = 14;
-            this.blotterTableview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.blotterTableview_CellContentClick);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Navy;
+            this.label2.Location = new System.Drawing.Point(25, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(149, 22);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Blotter Records";
             // 
             // blotterRecordsForm
             // 

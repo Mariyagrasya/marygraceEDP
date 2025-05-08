@@ -40,11 +40,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.residentsBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.householdTableview = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.addBtn = new System.Windows.Forms.Button();
-            this.householdTableview = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
             this.sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -208,6 +208,19 @@
             this.panel1.Size = new System.Drawing.Size(921, 607);
             this.panel1.TabIndex = 2;
             // 
+            // householdTableview
+            // 
+            this.householdTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.householdTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.householdTableview.Location = new System.Drawing.Point(26, 89);
+            this.householdTableview.Name = "householdTableview";
+            this.householdTableview.RowHeadersWidth = 51;
+            this.householdTableview.RowTemplate.Height = 24;
+            this.householdTableview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.householdTableview.Size = new System.Drawing.Size(869, 480);
+            this.householdTableview.TabIndex = 14;
+            this.householdTableview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.officialsTableview_CellContentClick);
+            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(259, 25);
@@ -225,17 +238,6 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Search";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(25, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 22);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Households";
-            // 
             // addBtn
             // 
             this.addBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
@@ -247,19 +249,18 @@
             this.addBtn.TabIndex = 13;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = false;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
-            // householdTableview
+            // label2
             // 
-            this.householdTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.householdTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.householdTableview.Location = new System.Drawing.Point(26, 89);
-            this.householdTableview.Name = "householdTableview";
-            this.householdTableview.RowHeadersWidth = 51;
-            this.householdTableview.RowTemplate.Height = 24;
-            this.householdTableview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.householdTableview.Size = new System.Drawing.Size(869, 480);
-            this.householdTableview.TabIndex = 14;
-            this.householdTableview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.officialsTableview_CellContentClick);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Navy;
+            this.label2.Location = new System.Drawing.Point(25, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 22);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Households";
             // 
             // householdForm
             // 

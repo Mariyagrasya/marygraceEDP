@@ -117,5 +117,12 @@ namespace brgyProfiling
         {
 
         }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            addBlotterRecords addBlotterForm = new addBlotterRecords ();
+            addBlotterForm.Show();
+            this.Hide();
+        }
     }
 }

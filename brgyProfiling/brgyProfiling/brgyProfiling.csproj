@@ -98,6 +98,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addBlotterRecords.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addBlotterRecords.Designer.cs">
+      <DependentUpon>addBlotterRecords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addHousehold.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addHousehold.Designer.cs">
+      <DependentUpon>addHousehold.cs</DependentUpon>
+    </Compile>
     <Compile Include="addresidents.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +191,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="addBlotterRecords.resx">
+      <DependentUpon>addBlotterRecords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addHousehold.resx">
+      <DependentUpon>addHousehold.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="addresidents.resx">
       <DependentUpon>addresidents.cs</DependentUpon>
     </EmbeddedResource>

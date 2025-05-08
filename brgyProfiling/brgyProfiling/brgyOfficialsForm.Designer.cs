@@ -40,13 +40,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.residentsBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.officialsTableview = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.deleteBtn = new System.Windows.Forms.Button();
             this.editBtn = new System.Windows.Forms.Button();
-            this.addBtn = new System.Windows.Forms.Button();
-            this.officialsTableview = new System.Windows.Forms.DataGridView();
             this.sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -200,18 +198,32 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.editBtn);
             this.panel1.Controls.Add(this.officialsTableview);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(311, 43);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(919, 607);
+            this.panel1.Size = new System.Drawing.Size(919, 650);
             this.panel1.TabIndex = 2;
+            // 
+            // officialsTableview
+            // 
+            this.officialsTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.officialsTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.officialsTableview.Location = new System.Drawing.Point(29, 89);
+            this.officialsTableview.Name = "officialsTableview";
+            this.officialsTableview.RowHeadersWidth = 51;
+            this.officialsTableview.RowTemplate.Height = 24;
+            this.officialsTableview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.officialsTableview.Size = new System.Drawing.Size(869, 531);
+            this.officialsTableview.TabIndex = 5;
+            this.officialsTableview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.officialsTableview_CellContentClick);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(519, 25);
+            this.textBox1.Location = new System.Drawing.Point(285, 30);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(203, 22);
             this.textBox1.TabIndex = 3;
@@ -220,7 +232,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(452, 29);
+            this.label3.Location = new System.Drawing.Point(218, 34);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 18);
             this.label3.TabIndex = 2;
@@ -231,31 +243,18 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(25, 25);
+            this.label2.Location = new System.Drawing.Point(25, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(130, 22);
             this.label2.TabIndex = 0;
             this.label2.Text = "Brgy Officials";
-            // 
-            // deleteBtn
-            // 
-            this.deleteBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.deleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.deleteBtn.Location = new System.Drawing.Point(971, 730);
-            this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(186, 43);
-            this.deleteBtn.TabIndex = 15;
-            this.deleteBtn.Text = "Delete";
-            this.deleteBtn.UseVisualStyleBackColor = false;
-            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
             // editBtn
             // 
             this.editBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.editBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.editBtn.Location = new System.Drawing.Point(682, 730);
+            this.editBtn.Location = new System.Drawing.Point(712, 19);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(186, 43);
             this.editBtn.TabIndex = 14;
@@ -263,41 +262,12 @@
             this.editBtn.UseVisualStyleBackColor = false;
             this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
             // 
-            // addBtn
-            // 
-            this.addBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.addBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.addBtn.Location = new System.Drawing.Point(392, 730);
-            this.addBtn.Name = "addBtn";
-            this.addBtn.Size = new System.Drawing.Size(186, 43);
-            this.addBtn.TabIndex = 13;
-            this.addBtn.Text = "Add";
-            this.addBtn.UseVisualStyleBackColor = false;
-            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
-            // 
-            // officialsTableview
-            // 
-            this.officialsTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.officialsTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.officialsTableview.Location = new System.Drawing.Point(29, 64);
-            this.officialsTableview.Name = "officialsTableview";
-            this.officialsTableview.RowHeadersWidth = 51;
-            this.officialsTableview.RowTemplate.Height = 24;
-            this.officialsTableview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.officialsTableview.Size = new System.Drawing.Size(869, 531);
-            this.officialsTableview.TabIndex = 5;
-            this.officialsTableview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.officialsTableview_CellContentClick);
-            // 
             // brgyOfficialsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1242, 803);
-            this.Controls.Add(this.deleteBtn);
-            this.Controls.Add(this.editBtn);
-            this.Controls.Add(this.addBtn);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.sidePanel);
             this.Name = "brgyOfficialsForm";
@@ -331,9 +301,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.Button editBtn;
-        private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.DataGridView officialsTableview;
     }
 }
