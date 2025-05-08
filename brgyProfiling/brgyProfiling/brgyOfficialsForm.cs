@@ -23,7 +23,7 @@ namespace brgyProfiling
             try
             {
                 // SQL query to fetch all data from the staff table
-                string query = "SELECT * FROM staff";
+                string query = "SELECT * FROM staffinfo";
 
                 // Use the conn class to establish a connection
                 using (MySqlConnection connection = Conn.GetConnection())

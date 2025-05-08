@@ -116,6 +116,12 @@
     <Compile Include="addresidents.Designer.cs">
       <DependentUpon>addresidents.cs</DependentUpon>
     </Compile>
+    <Compile Include="addVoter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addVoter.Designer.cs">
+      <DependentUpon>addVoter.cs</DependentUpon>
+    </Compile>
     <Compile Include="brgyOfficialsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="addresidents.resx">
       <DependentUpon>addresidents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addVoter.resx">
+      <DependentUpon>addVoter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="blotterRecordsForm.resx">
       <DependentUpon>blotterRecordsForm.cs</DependentUpon>

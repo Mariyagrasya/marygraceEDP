@@ -23,7 +23,7 @@ namespace brgyProfiling
             try
             {
                 // SQL query to fetch business permits data
-                string query = "SELECT * FROM votersregistration";
+                string query = "SELECT * FROM voterregistrationinfo";
 
                 // Use the conn class to establish a connection
                 using (MySqlConnection connection = Conn.GetConnection())
@@ -115,7 +115,9 @@ namespace brgyProfiling
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-
+            addVoter addVoterForm = new addVoter();
+            addVoterForm.Show();
+            this.Hide();
         }
 
         private void votersTableview_CellContentClick(object sender, DataGridViewCellEventArgs e)

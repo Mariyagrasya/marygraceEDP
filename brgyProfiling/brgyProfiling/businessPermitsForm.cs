@@ -23,7 +23,7 @@ namespace brgyProfiling
             try
             {
                 // SQL query to fetch business permits data
-                string query = "SELECT * FROM businesspermits";
+                string query = "SELECT * FROM businesspermitsinfo";
 
                 // Use the conn class to establish a connection
                 using (MySqlConnection connection = Conn.GetConnection())
