@@ -46,9 +46,11 @@
             this.deleteBtn = new System.Windows.Forms.Button();
             this.editBtn = new System.Windows.Forms.Button();
             this.addBtn = new System.Windows.Forms.Button();
+            this.officialsTableview = new System.Windows.Forms.DataGridView();
             this.sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.officialsTableview)).BeginInit();
             this.SuspendLayout();
             // 
             // sidePanel
@@ -198,12 +200,13 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.officialsTableview);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(311, 43);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(765, 607);
+            this.panel1.Size = new System.Drawing.Size(919, 607);
             this.panel1.TabIndex = 2;
             // 
             // textBox1
@@ -239,43 +242,59 @@
             this.deleteBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.deleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.deleteBtn.Location = new System.Drawing.Point(897, 730);
+            this.deleteBtn.Location = new System.Drawing.Point(971, 730);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(186, 43);
             this.deleteBtn.TabIndex = 15;
             this.deleteBtn.Text = "Delete";
             this.deleteBtn.UseVisualStyleBackColor = false;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
             // editBtn
             // 
             this.editBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.editBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.editBtn.Location = new System.Drawing.Point(608, 730);
+            this.editBtn.Location = new System.Drawing.Point(682, 730);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(186, 43);
             this.editBtn.TabIndex = 14;
             this.editBtn.Text = "Edit";
             this.editBtn.UseVisualStyleBackColor = false;
+            this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
             // 
             // addBtn
             // 
             this.addBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.addBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.addBtn.Location = new System.Drawing.Point(318, 730);
+            this.addBtn.Location = new System.Drawing.Point(392, 730);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(186, 43);
             this.addBtn.TabIndex = 13;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = false;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
+            // 
+            // officialsTableview
+            // 
+            this.officialsTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.officialsTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.officialsTableview.Location = new System.Drawing.Point(29, 64);
+            this.officialsTableview.Name = "officialsTableview";
+            this.officialsTableview.RowHeadersWidth = 51;
+            this.officialsTableview.RowTemplate.Height = 24;
+            this.officialsTableview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.officialsTableview.Size = new System.Drawing.Size(869, 531);
+            this.officialsTableview.TabIndex = 5;
+            this.officialsTableview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.officialsTableview_CellContentClick);
             // 
             // brgyOfficialsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1095, 819);
+            this.ClientSize = new System.Drawing.Size(1242, 803);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.addBtn);
@@ -290,6 +309,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.officialsTableview)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -314,5 +334,6 @@
         private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.Button editBtn;
         private System.Windows.Forms.Button addBtn;
+        private System.Windows.Forms.DataGridView officialsTableview;
     }
 }

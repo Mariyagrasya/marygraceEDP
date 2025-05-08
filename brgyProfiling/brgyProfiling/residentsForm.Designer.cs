@@ -212,7 +212,6 @@
             // 
             // residentTableview
             // 
-            this.residentTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.residentTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.residentTableview.Location = new System.Drawing.Point(21, 73);
             this.residentTableview.Name = "residentTableview";

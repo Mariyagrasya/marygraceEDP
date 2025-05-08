@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace brgyProfiling
 {
@@ -15,6 +16,38 @@ namespace brgyProfiling
         public brgyOfficialsForm()
         {
             InitializeComponent();
+            LoadStaffData();
+        }
+        private void LoadStaffData()
+        {
+            try
+            {
+                // SQL query to fetch all data from the staff table
+                string query = "SELECT * FROM staff";
+
+                // Use the conn class to establish a connection
+                using (MySqlConnection connection = Conn.GetConnection())
+                {
+                    connection.Open(); // Ensure the connection is open
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        {
+                            DataTable staffData = new DataTable();
+                            adapter.Fill(staffData); // Fill the DataTable with the query result
+
+                            // Bind the data to the DataGridView
+                            officialsTableview.DataSource = staffData;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Display an error message if something goes wrong
+                MessageBox.Show("Error loading staff data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void brgyOfficialsForm_Load(object sender, EventArgs e)
@@ -83,6 +116,26 @@ namespace brgyProfiling
                 loginForm.Show();
                 this.Hide();
             }
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void officialsTableview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
