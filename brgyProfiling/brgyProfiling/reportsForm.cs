@@ -127,5 +127,12 @@ namespace brgyProfiling
         {
 
         }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            addReport addReportForm = new addReport();
+            addReportForm.Show();
+            this.Hide(); 
+        }
     }
 }

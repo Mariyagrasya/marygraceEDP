@@ -116,6 +116,12 @@
     <Compile Include="addHousehold.Designer.cs">
       <DependentUpon>addHousehold.cs</DependentUpon>
     </Compile>
+    <Compile Include="addReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addReport.Designer.cs">
+      <DependentUpon>addReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="addresidents.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="addHousehold.resx">
       <DependentUpon>addHousehold.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addReport.resx">
+      <DependentUpon>addReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="addresidents.resx">
       <DependentUpon>addresidents.cs</DependentUpon>

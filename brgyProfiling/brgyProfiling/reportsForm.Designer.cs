@@ -40,11 +40,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.residentsBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.reportsTableview = new System.Windows.Forms.DataGridView();
             this.addBtn = new System.Windows.Forms.Button();
             this.search = new System.Windows.Forms.TextBox();
-            this.reportsTableview = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -209,6 +209,39 @@
             this.panel1.TabIndex = 16;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // reportsTableview
+            // 
+            this.reportsTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.reportsTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.reportsTableview.Location = new System.Drawing.Point(15, 94);
+            this.reportsTableview.Name = "reportsTableview";
+            this.reportsTableview.RowHeadersWidth = 51;
+            this.reportsTableview.RowTemplate.Height = 24;
+            this.reportsTableview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.reportsTableview.Size = new System.Drawing.Size(869, 480);
+            this.reportsTableview.TabIndex = 16;
+            // 
+            // addBtn
+            // 
+            this.addBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.addBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.addBtn.Location = new System.Drawing.Point(698, 21);
+            this.addBtn.Name = "addBtn";
+            this.addBtn.Size = new System.Drawing.Size(186, 43);
+            this.addBtn.TabIndex = 17;
+            this.addBtn.Text = "Add";
+            this.addBtn.UseVisualStyleBackColor = false;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
+            // 
+            // search
+            // 
+            this.search.Location = new System.Drawing.Point(273, 32);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(203, 22);
+            this.search.TabIndex = 3;
+            this.search.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -230,38 +263,6 @@
             this.label2.Size = new System.Drawing.Size(145, 22);
             this.label2.TabIndex = 0;
             this.label2.Text = "List Of Reports";
-            // 
-            // addBtn
-            // 
-            this.addBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.addBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.addBtn.Location = new System.Drawing.Point(698, 21);
-            this.addBtn.Name = "addBtn";
-            this.addBtn.Size = new System.Drawing.Size(186, 43);
-            this.addBtn.TabIndex = 17;
-            this.addBtn.Text = "Add";
-            this.addBtn.UseVisualStyleBackColor = false;
-            // 
-            // search
-            // 
-            this.search.Location = new System.Drawing.Point(273, 32);
-            this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(203, 22);
-            this.search.TabIndex = 3;
-            this.search.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // reportsTableview
-            // 
-            this.reportsTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.reportsTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.reportsTableview.Location = new System.Drawing.Point(15, 94);
-            this.reportsTableview.Name = "reportsTableview";
-            this.reportsTableview.RowHeadersWidth = 51;
-            this.reportsTableview.RowTemplate.Height = 24;
-            this.reportsTableview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.reportsTableview.Size = new System.Drawing.Size(869, 480);
-            this.reportsTableview.TabIndex = 16;
             // 
             // reportsForm
             // 
