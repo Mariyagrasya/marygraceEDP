@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace brgyProfiling
 {
@@ -15,6 +16,38 @@ namespace brgyProfiling
         public voterRegistrationForm()
         {
             InitializeComponent();
+            LoadVotersRegistrationData();
+        }
+        private void LoadVotersRegistrationData()
+        {
+            try
+            {
+                // SQL query to fetch business permits data
+                string query = "SELECT * FROM votersregistration";
+
+                // Use the conn class to establish a connection
+                using (MySqlConnection connection = Conn.GetConnection())
+                {
+                    connection.Open();
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        {
+                            DataTable votersRegistrationData = new DataTable();
+                            adapter.Fill(votersRegistrationData);
+
+                            // Bind the data to the DataGridView
+                            votersTableview.DataSource = votersRegistrationData;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading data: " + ex.Message,
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void residentsBtn_Click(object sender, EventArgs e)
@@ -78,6 +111,16 @@ namespace brgyProfiling
                 loginForm.Show();
                 this.Hide();
             }
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void votersTableview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
