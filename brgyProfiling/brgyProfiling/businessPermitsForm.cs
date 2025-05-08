@@ -120,7 +120,10 @@ namespace brgyProfiling
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-
+        
+            addBusinessPermit addPermitForm = new addBusinessPermit();
+            addPermitForm.Show();
+            this.Hide(); 
         }
 
         private void permitsTableview_CellContentClick(object sender, DataGridViewCellEventArgs e)

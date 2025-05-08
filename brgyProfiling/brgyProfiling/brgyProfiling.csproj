@@ -104,6 +104,12 @@
     <Compile Include="addBlotterRecords.Designer.cs">
       <DependentUpon>addBlotterRecords.cs</DependentUpon>
     </Compile>
+    <Compile Include="addBusinessPermit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addBusinessPermit.Designer.cs">
+      <DependentUpon>addBusinessPermit.cs</DependentUpon>
+    </Compile>
     <Compile Include="addHousehold.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="addBlotterRecords.resx">
       <DependentUpon>addBlotterRecords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addBusinessPermit.resx">
+      <DependentUpon>addBusinessPermit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="addHousehold.resx">
       <DependentUpon>addHousehold.cs</DependentUpon>
