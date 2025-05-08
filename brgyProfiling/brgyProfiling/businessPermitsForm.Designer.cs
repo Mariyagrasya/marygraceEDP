@@ -40,11 +40,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.residentsBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.permitsTableview = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.addBtn = new System.Windows.Forms.Button();
-            this.permitsTableview = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
             this.sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -206,8 +206,21 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(314, 44);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(916, 628);
+            this.panel1.Size = new System.Drawing.Size(916, 596);
             this.panel1.TabIndex = 2;
+            // 
+            // permitsTableview
+            // 
+            this.permitsTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.permitsTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.permitsTableview.Location = new System.Drawing.Point(24, 83);
+            this.permitsTableview.Name = "permitsTableview";
+            this.permitsTableview.RowHeadersWidth = 51;
+            this.permitsTableview.RowTemplate.Height = 24;
+            this.permitsTableview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.permitsTableview.Size = new System.Drawing.Size(869, 480);
+            this.permitsTableview.TabIndex = 15;
+            this.permitsTableview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.permitsTableview_CellContentClick);
             // 
             // textBox1
             // 
@@ -226,17 +239,6 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Search";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(25, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(164, 22);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Business Permits";
-            // 
             // addBtn
             // 
             this.addBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
@@ -250,18 +252,16 @@
             this.addBtn.UseVisualStyleBackColor = false;
             this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
-            // permitsTableview
+            // label2
             // 
-            this.permitsTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.permitsTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.permitsTableview.Location = new System.Drawing.Point(24, 121);
-            this.permitsTableview.Name = "permitsTableview";
-            this.permitsTableview.RowHeadersWidth = 51;
-            this.permitsTableview.RowTemplate.Height = 24;
-            this.permitsTableview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.permitsTableview.Size = new System.Drawing.Size(869, 480);
-            this.permitsTableview.TabIndex = 15;
-            this.permitsTableview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.permitsTableview_CellContentClick);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Navy;
+            this.label2.Location = new System.Drawing.Point(25, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(164, 22);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Business Permits";
             // 
             // businessPermitsForm
             // 

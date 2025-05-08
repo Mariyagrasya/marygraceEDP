@@ -40,15 +40,15 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.residentsBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.deleteBtn = new System.Windows.Forms.Button();
-            this.editBtn = new System.Windows.Forms.Button();
             this.addBtn = new System.Windows.Forms.Button();
+            this.search = new System.Windows.Forms.TextBox();
+            this.reportsTableview = new System.Windows.Forms.DataGridView();
             this.sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reportsTableview)).BeginInit();
             this.SuspendLayout();
             // 
             // sidePanel
@@ -198,89 +198,78 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.reportsTableview);
+            this.panel1.Controls.Add(this.addBtn);
+            this.panel1.Controls.Add(this.search);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(318, 44);
+            this.panel1.Location = new System.Drawing.Point(320, 44);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(765, 577);
+            this.panel1.Size = new System.Drawing.Size(900, 599);
             this.panel1.TabIndex = 16;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(519, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(203, 22);
-            this.textBox1.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(452, 29);
+            this.label3.Location = new System.Drawing.Point(206, 33);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 18);
             this.label3.TabIndex = 2;
             this.label3.Text = "Search";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(25, 25);
+            this.label2.Location = new System.Drawing.Point(28, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(145, 22);
             this.label2.TabIndex = 0;
             this.label2.Text = "List Of Reports";
-            // 
-            // deleteBtn
-            // 
-            this.deleteBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.deleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.deleteBtn.Location = new System.Drawing.Point(899, 678);
-            this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(186, 43);
-            this.deleteBtn.TabIndex = 19;
-            this.deleteBtn.Text = "Delete";
-            this.deleteBtn.UseVisualStyleBackColor = false;
-            // 
-            // editBtn
-            // 
-            this.editBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.editBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.editBtn.Location = new System.Drawing.Point(610, 678);
-            this.editBtn.Name = "editBtn";
-            this.editBtn.Size = new System.Drawing.Size(186, 43);
-            this.editBtn.TabIndex = 18;
-            this.editBtn.Text = "Edit";
-            this.editBtn.UseVisualStyleBackColor = false;
             // 
             // addBtn
             // 
             this.addBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.addBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.addBtn.Location = new System.Drawing.Point(320, 678);
+            this.addBtn.Location = new System.Drawing.Point(698, 21);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(186, 43);
             this.addBtn.TabIndex = 17;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = false;
             // 
+            // search
+            // 
+            this.search.Location = new System.Drawing.Point(273, 32);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(203, 22);
+            this.search.TabIndex = 3;
+            this.search.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // reportsTableview
+            // 
+            this.reportsTableview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.reportsTableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.reportsTableview.Location = new System.Drawing.Point(15, 94);
+            this.reportsTableview.Name = "reportsTableview";
+            this.reportsTableview.RowHeadersWidth = 51;
+            this.reportsTableview.RowTemplate.Height = 24;
+            this.reportsTableview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.reportsTableview.Size = new System.Drawing.Size(869, 480);
+            this.reportsTableview.TabIndex = 16;
+            // 
             // reportsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1095, 819);
+            this.ClientSize = new System.Drawing.Size(1242, 803);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.deleteBtn);
-            this.Controls.Add(this.editBtn);
-            this.Controls.Add(this.addBtn);
             this.Controls.Add(this.sidePanel);
             this.Name = "reportsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -290,6 +279,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reportsTableview)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -308,11 +298,10 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button residentsBtn;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button deleteBtn;
-        private System.Windows.Forms.Button editBtn;
         private System.Windows.Forms.Button addBtn;
+        private System.Windows.Forms.TextBox search;
+        private System.Windows.Forms.DataGridView reportsTableview;
     }
 }
