@@ -44,12 +44,16 @@
             this.addBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.voters = new System.Windows.Forms.Panel();
+            this.women = new System.Windows.Forms.Panel();
+            this.Men = new System.Windows.Forms.Panel();
+            this.totalPopulation = new System.Windows.Forms.Panel();
             this.expiringPermits = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
-            this.totalPopulation = new System.Windows.Forms.Panel();
-            this.Men = new System.Windows.Forms.Panel();
-            this.women = new System.Windows.Forms.Panel();
-            this.voters = new System.Windows.Forms.Panel();
+            this.household = new System.Windows.Forms.Panel();
+            this.purok1 = new System.Windows.Forms.Panel();
+            this.purok2 = new System.Windows.Forms.Panel();
+            this.purok3 = new System.Windows.Forms.Panel();
             this.sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -74,7 +78,7 @@
             this.sidePanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.sidePanel.Location = new System.Drawing.Point(1, 0);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(294, 822);
+            this.sidePanel.Size = new System.Drawing.Size(294, 889);
             this.sidePanel.TabIndex = 2;
             // 
             // logoutBtn
@@ -253,6 +257,10 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.purok3);
+            this.panel2.Controls.Add(this.purok2);
+            this.panel2.Controls.Add(this.purok1);
+            this.panel2.Controls.Add(this.household);
             this.panel2.Controls.Add(this.voters);
             this.panel2.Controls.Add(this.women);
             this.panel2.Controls.Add(this.Men);
@@ -261,8 +269,44 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Location = new System.Drawing.Point(320, 353);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1181, 421);
+            this.panel2.Size = new System.Drawing.Size(1181, 501);
             this.panel2.TabIndex = 18;
+            // 
+            // voters
+            // 
+            this.voters.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.voters.Location = new System.Drawing.Point(823, 267);
+            this.voters.Name = "voters";
+            this.voters.Size = new System.Drawing.Size(338, 74);
+            this.voters.TabIndex = 20;
+            this.voters.Paint += new System.Windows.Forms.PaintEventHandler(this.voters_Paint);
+            // 
+            // women
+            // 
+            this.women.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.women.Location = new System.Drawing.Point(565, 267);
+            this.women.Name = "women";
+            this.women.Size = new System.Drawing.Size(243, 74);
+            this.women.TabIndex = 19;
+            this.women.Paint += new System.Windows.Forms.PaintEventHandler(this.women_Paint);
+            // 
+            // Men
+            // 
+            this.Men.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Men.Location = new System.Drawing.Point(306, 267);
+            this.Men.Name = "Men";
+            this.Men.Size = new System.Drawing.Size(243, 74);
+            this.Men.TabIndex = 18;
+            this.Men.Paint += new System.Windows.Forms.PaintEventHandler(this.Men_Paint);
+            // 
+            // totalPopulation
+            // 
+            this.totalPopulation.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.totalPopulation.Location = new System.Drawing.Point(16, 267);
+            this.totalPopulation.Name = "totalPopulation";
+            this.totalPopulation.Size = new System.Drawing.Size(272, 74);
+            this.totalPopulation.TabIndex = 17;
+            this.totalPopulation.Paint += new System.Windows.Forms.PaintEventHandler(this.totalPopulation_Paint);
             // 
             // expiringPermits
             // 
@@ -288,48 +332,48 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "List Of Expiring Business Permits";
             // 
-            // totalPopulation
+            // household
             // 
-            this.totalPopulation.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.totalPopulation.Location = new System.Drawing.Point(16, 267);
-            this.totalPopulation.Name = "totalPopulation";
-            this.totalPopulation.Size = new System.Drawing.Size(272, 74);
-            this.totalPopulation.TabIndex = 17;
-            this.totalPopulation.Paint += new System.Windows.Forms.PaintEventHandler(this.totalPopulation_Paint);
+            this.household.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.household.Location = new System.Drawing.Point(16, 378);
+            this.household.Name = "household";
+            this.household.Size = new System.Drawing.Size(243, 74);
+            this.household.TabIndex = 20;
+            this.household.Paint += new System.Windows.Forms.PaintEventHandler(this.household_Paint);
             // 
-            // Men
+            // purok1
             // 
-            this.Men.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Men.Location = new System.Drawing.Point(306, 267);
-            this.Men.Name = "Men";
-            this.Men.Size = new System.Drawing.Size(243, 74);
-            this.Men.TabIndex = 18;
-            this.Men.Paint += new System.Windows.Forms.PaintEventHandler(this.Men_Paint);
+            this.purok1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.purok1.Location = new System.Drawing.Point(306, 378);
+            this.purok1.Name = "purok1";
+            this.purok1.Size = new System.Drawing.Size(243, 74);
+            this.purok1.TabIndex = 21;
+            this.purok1.Paint += new System.Windows.Forms.PaintEventHandler(this.purok1_Paint);
             // 
-            // women
+            // purok2
             // 
-            this.women.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.women.Location = new System.Drawing.Point(565, 267);
-            this.women.Name = "women";
-            this.women.Size = new System.Drawing.Size(243, 74);
-            this.women.TabIndex = 19;
-            this.women.Paint += new System.Windows.Forms.PaintEventHandler(this.women_Paint);
+            this.purok2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.purok2.Location = new System.Drawing.Point(613, 378);
+            this.purok2.Name = "purok2";
+            this.purok2.Size = new System.Drawing.Size(243, 74);
+            this.purok2.TabIndex = 22;
+            this.purok2.Paint += new System.Windows.Forms.PaintEventHandler(this.purok2_Paint);
             // 
-            // voters
+            // purok3
             // 
-            this.voters.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.voters.Location = new System.Drawing.Point(824, 267);
-            this.voters.Name = "voters";
-            this.voters.Size = new System.Drawing.Size(338, 74);
-            this.voters.TabIndex = 20;
-            this.voters.Paint += new System.Windows.Forms.PaintEventHandler(this.voters_Paint);
+            this.purok3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.purok3.Location = new System.Drawing.Point(918, 378);
+            this.purok3.Name = "purok3";
+            this.purok3.Size = new System.Drawing.Size(243, 74);
+            this.purok3.TabIndex = 23;
+            this.purok3.Paint += new System.Windows.Forms.PaintEventHandler(this.purok3_Paint);
             // 
             // reportsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1513, 803);
+            this.ClientSize = new System.Drawing.Size(1513, 887);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.sidePanel);
@@ -373,5 +417,9 @@
         private System.Windows.Forms.Panel women;
         private System.Windows.Forms.Panel Men;
         private System.Windows.Forms.Panel voters;
+        private System.Windows.Forms.Panel purok1;
+        private System.Windows.Forms.Panel household;
+        private System.Windows.Forms.Panel purok3;
+        private System.Windows.Forms.Panel purok2;
     }
 }

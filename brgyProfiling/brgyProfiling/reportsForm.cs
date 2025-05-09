@@ -386,5 +386,185 @@ namespace brgyProfiling
             }
         }
 
+        private void household_Paint(object sender, PaintEventArgs e)
+        {
+            try
+            {
+                // SQL query to call the MySQL function
+                string query = "SELECT getTotalHousehold() AS TotalHousehold";
+
+                // Use the conn class to establish a connection
+                using (MySqlConnection connection = Conn.GetConnection())
+                {
+                    connection.Open();
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Execute the query and retrieve the result
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int totalHousehold))
+                        {
+                            // Display the total household count in the UI
+                            e.Graphics.DrawString($"Households: {totalHousehold}",
+                                                  new Font("Arial", 12, FontStyle.Bold),
+                                                  Brushes.Purple,
+                                                  new PointF(20, 20));
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString("Total Households: Data not available",
+                                                  new Font("Arial", 12, FontStyle.Bold),
+                                                  Brushes.Red,
+                                                  new PointF(20, 20));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Display an error message in the UI if something goes wrong
+                e.Graphics.DrawString($"Error: {ex.Message}",
+                                      new Font("Arial", 12, FontStyle.Bold),
+                                      Brushes.Red,
+                                      new PointF(10, 10));
+            }
+        }
+
+        private void purok1_Paint(object sender, PaintEventArgs e)
+        {
+            try
+            {
+                // SQL query to call the MySQL function
+                string query = "SELECT getPurok1() AS TotalPurok1";
+
+                // Use the conn class to establish a connection
+                using (MySqlConnection connection = Conn.GetConnection())
+                {
+                    connection.Open();
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Execute the query and retrieve the result
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int totalPurok1))
+                        {
+                            // Display the total residents of Purok 1 in the UI
+                            e.Graphics.DrawString($"Purok 1: {totalPurok1}",
+                                                  new Font("Arial", 12, FontStyle.Bold),
+                                                  Brushes.Orange,
+                                                  new PointF(20, 20));
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString("Total Residents in Purok 1: Data not available",
+                                                  new Font("Arial", 12, FontStyle.Bold),
+                                                  Brushes.Red,
+                                                  new PointF(20, 20));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Display an error message in the UI if something goes wrong
+                e.Graphics.DrawString($"Error: {ex.Message}",
+                                      new Font("Arial", 12, FontStyle.Bold),
+                                      Brushes.Red,
+                                      new PointF(10, 10));
+            }
+        }
+
+        private void purok2_Paint(object sender, PaintEventArgs e)
+        {
+            try
+            {
+                // SQL query to call the MySQL function
+                string query = "SELECT getPurok2() AS TotalPurok2";
+
+                // Use the conn class to establish a connection
+                using (MySqlConnection connection = Conn.GetConnection())
+                {
+                    connection.Open();
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Execute the query and retrieve the result
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int totalPurok2))
+                        {
+                            // Display the total residents of Purok 2 in the UI
+                            e.Graphics.DrawString($"Purok 2: {totalPurok2}",
+                                                  new Font("Arial", 12, FontStyle.Bold),
+                                                  Brushes.Teal,
+                                                  new PointF(20, 20));
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString("Total Residents in Purok 2: Data not available",
+                                                  new Font("Arial", 12, FontStyle.Bold),
+                                                  Brushes.Red,
+                                                  new PointF(20, 20));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Display an error message in the UI if something goes wrong
+                e.Graphics.DrawString($"Error: {ex.Message}",
+                                      new Font("Arial", 12, FontStyle.Bold),
+                                      Brushes.Red,
+                                      new PointF(10, 10));
+            }
+        }
+
+        private void purok3_Paint(object sender, PaintEventArgs e)
+        {
+            try
+            {
+                // SQL query to call the MySQL function
+                string query = "SELECT getPurok3() AS TotalPurok3";
+
+                // Use the conn class to establish a connection
+                using (MySqlConnection connection = Conn.GetConnection())
+                {
+                    connection.Open();
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Execute the query and retrieve the result
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int totalPurok3))
+                        {
+                            // Display the total residents of Purok 3 in the UI
+                            e.Graphics.DrawString($"Purok 3: {totalPurok3}",
+                                                  new Font("Arial", 12, FontStyle.Bold),
+                                                  Brushes.Green,
+                                                  new PointF(20, 20));
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString("Total Residents in Purok 3: Data not available",
+                                                  new Font("Arial", 12, FontStyle.Bold),
+                                                  Brushes.Red,
+                                                  new PointF(20, 20));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Display an error message in the UI if something goes wrong
+                e.Graphics.DrawString($"Error: {ex.Message}",
+                                      new Font("Arial", 12, FontStyle.Bold),
+                                      Brushes.Red,
+                                      new PointF(10, 10));
+            }
+        }
+
     }
 }
