@@ -41,10 +41,9 @@
             this.residentsBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.householdTableview = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.addBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.exportBtn = new System.Windows.Forms.Button();
             this.sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -198,14 +197,13 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.exportBtn);
             this.panel1.Controls.Add(this.householdTableview);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.addBtn);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(309, 44);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(921, 607);
+            this.panel1.Size = new System.Drawing.Size(921, 611);
             this.panel1.TabIndex = 2;
             // 
             // householdTableview
@@ -221,29 +219,12 @@
             this.householdTableview.TabIndex = 14;
             this.householdTableview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.officialsTableview_CellContentClick);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(259, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(203, 22);
-            this.textBox1.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(192, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 18);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Search";
-            // 
             // addBtn
             // 
             this.addBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.addBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.addBtn.Location = new System.Drawing.Point(706, 25);
+            this.addBtn.Location = new System.Drawing.Point(504, 27);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(186, 43);
             this.addBtn.TabIndex = 13;
@@ -256,11 +237,24 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(25, 25);
+            this.label2.Location = new System.Drawing.Point(41, 36);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 22);
             this.label2.TabIndex = 0;
             this.label2.Text = "Households";
+            // 
+            // exportBtn
+            // 
+            this.exportBtn.BackColor = System.Drawing.Color.Navy;
+            this.exportBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.exportBtn.Location = new System.Drawing.Point(709, 27);
+            this.exportBtn.Name = "exportBtn";
+            this.exportBtn.Size = new System.Drawing.Size(186, 43);
+            this.exportBtn.TabIndex = 15;
+            this.exportBtn.Text = "Export";
+            this.exportBtn.UseVisualStyleBackColor = false;
+            this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
             // 
             // householdForm
             // 
@@ -297,10 +291,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button residentsBtn;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.DataGridView householdTableview;
+        private System.Windows.Forms.Button exportBtn;
     }
 }

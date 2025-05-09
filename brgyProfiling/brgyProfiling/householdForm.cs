@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace brgyProfiling
 {
@@ -124,6 +126,99 @@ namespace brgyProfiling
             addHousehold addHouseholdForm = new addHousehold();
             addHouseholdForm.Show();
             this.Hide(); 
+        }
+
+        private void exportBtn_Click(object sender, EventArgs e)
+        {
+            Excel.Application excelApp = null;
+            Excel.Workbook workbook = null;
+            Excel.Worksheet worksheet = null;
+
+            try
+            {
+                // 1. Ensure the output directory exists
+                string reportsDir = Path.Combine(Application.StartupPath, "generatedreports");
+                if (!Directory.Exists(reportsDir))
+                {
+                    Directory.CreateDirectory(reportsDir);
+                }
+
+                // 2. Initialize Excel
+                excelApp = new Excel.Application();
+                workbook = excelApp.Workbooks.Add(Type.Missing);
+                worksheet = (Excel.Worksheet)workbook.Sheets[1];
+                worksheet.Name = "Household Data"; // Changed from "Residents Data"
+
+                // 3. Write column headers (using householdTableview instead of residentTableview)
+                for (int i = 1; i <= householdTableview.Columns.Count; i++)
+                {
+                    worksheet.Cells[1, i] = householdTableview.Columns[i - 1].HeaderText;
+                }
+
+                // 4. Export data (with proper formatting)
+                for (int i = 0; i < householdTableview.Rows.Count; i++)
+                {
+                    for (int j = 0; j < householdTableview.Columns.Count; j++)
+                    {
+                        var cellValue = householdTableview.Rows[i].Cells[j].Value;
+
+                        // Format dates (adjust column name as needed)
+                        if (householdTableview.Columns[j].Name.ToLower().Contains("date") && cellValue is DateTime)
+                        {
+                            worksheet.Cells[i + 2, j + 1] = ((DateTime)cellValue).ToString("dd/MM/yyyy");
+                            worksheet.Cells[i + 2, j + 1].NumberFormat = "dd/MM/yyyy";
+                        }
+                        else
+                        {
+                            worksheet.Cells[i + 2, j + 1] = cellValue?.ToString() ?? string.Empty;
+                        }
+                    }
+                }
+
+                // 5. Enable Excel filtering
+                worksheet.Rows[1].AutoFilter(); // Adds dropdown filters to headers
+
+                // 6. Auto-fit columns for better readability
+                worksheet.Columns.AutoFit();
+
+                // 7. Save the file
+                string timestamp = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+                string filePath = Path.Combine(reportsDir, $"HouseholdData-{timestamp}.xlsx"); // Updated filename
+
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+
+                workbook.SaveAs(filePath);
+                MessageBox.Show($"Household data exported successfully to: {filePath}", "Export Successful",
+                              MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error exporting household data: {ex.Message}", "Export Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // 8. Proper cleanup
+                if (workbook != null)
+                {
+                    workbook.Close(false);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
+                }
+
+                if (excelApp != null)
+                {
+                    excelApp.Quit();
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+                }
+
+                if (worksheet != null)
+                {
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
+                }
+            }
         }
     }
 }

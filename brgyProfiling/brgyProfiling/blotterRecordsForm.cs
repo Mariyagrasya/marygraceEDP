@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace brgyProfiling
 {
@@ -123,6 +125,102 @@ namespace brgyProfiling
             addBlotterRecords addBlotterForm = new addBlotterRecords ();
             addBlotterForm.Show();
             this.Hide();
+        }
+
+        private void exportBtn_Click(object sender, EventArgs e)
+        {
+            Excel.Application excelApp = null;
+            Excel.Workbook workbook = null;
+            Excel.Worksheet worksheet = null;
+
+            try
+            {
+                // 1. Ensure output directory exists
+                string reportsDir = Path.Combine(Application.StartupPath, "generatedreports");
+                if (!Directory.Exists(reportsDir))
+                {
+                    Directory.CreateDirectory(reportsDir);
+                }
+
+                // 2. Initialize Excel
+                excelApp = new Excel.Application();
+                workbook = excelApp.Workbooks.Add(Type.Missing);
+                worksheet = (Excel.Worksheet)workbook.Sheets[1];
+                worksheet.Name = "Blotter Records";
+
+                // 3. Write column headers
+                for (int i = 1; i <= blotterTableview.Columns.Count; i++)
+                {
+                    worksheet.Cells[1, i] = blotterTableview.Columns[i - 1].HeaderText;
+
+                    // Format header row
+                    worksheet.Cells[1, i].Font.Bold = true;
+                    worksheet.Cells[1, i].Interior.Color = Excel.XlRgbColor.rgbLightGray;
+                }
+
+                // 4. Export data with special formatting
+                for (int i = 0; i < blotterTableview.Rows.Count; i++)
+                {
+                    for (int j = 0; j < blotterTableview.Columns.Count; j++)
+                    {
+                        var cellValue = blotterTableview.Rows[i].Cells[j].Value;
+
+                        // Format dates (assuming columns with "date" in name)
+                        if (blotterTableview.Columns[j].Name.ToLower().Contains("date") && cellValue is DateTime)
+                        {
+                            worksheet.Cells[i + 2, j + 1] = ((DateTime)cellValue).ToString("MM/dd/yyyy");
+                            worksheet.Cells[i + 2, j + 1].NumberFormat = "MM/dd/yyyy";
+                        }
+                        // Highlight "Resolved" status
+                        else if (blotterTableview.Columns[j].Name.ToLower().Contains("status") && cellValue?.ToString() == "Resolved")
+                        {
+                            worksheet.Cells[i + 2, j + 1] = cellValue;
+                            worksheet.Cells[i + 2, j + 1].Interior.Color = Excel.XlRgbColor.rgbLightGreen;
+                        }
+                        else
+                        {
+                            worksheet.Cells[i + 2, j + 1] = cellValue?.ToString() ?? string.Empty;
+                        }
+                    }
+                }
+
+                // 5. Enable Excel features
+                worksheet.Rows[1].AutoFilter();  // Enable filters
+                worksheet.Columns.AutoFit();      // Auto-fit columns
+
+                // 6. Save the file
+                string timestamp = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+                string filePath = Path.Combine(reportsDir, $"BlotterRecords-{timestamp}.xlsx");
+
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+
+                workbook.SaveAs(filePath);
+                MessageBox.Show($"Blotter records exported to:\n{filePath}", "Export Successful",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error exporting blotter records:\n{ex.Message}", "Export Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // 7. Cleanup COM objects in reverse order
+                if (worksheet != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
+                if (workbook != null)
+                {
+                    workbook.Close(false);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
+                }
+                if (excelApp != null)
+                {
+                    excelApp.Quit();
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+                }
+            }
         }
     }
 }

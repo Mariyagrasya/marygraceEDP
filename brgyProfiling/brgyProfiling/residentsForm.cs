@@ -242,7 +242,7 @@ namespace brgyProfiling
 
             try
             {
-                // 1. Ensure the output directory exists
+                // 1. Ensure output directory exists
                 string reportsDir = Path.Combine(Application.StartupPath, "generatedreports");
                 if (!Directory.Exists(reportsDir))
                 {
@@ -251,29 +251,46 @@ namespace brgyProfiling
 
                 // 2. Initialize Excel
                 excelApp = new Excel.Application();
+                excelApp.Visible = false; // Hide Excel during export
                 workbook = excelApp.Workbooks.Add(Type.Missing);
                 worksheet = (Excel.Worksheet)workbook.Sheets[1];
                 worksheet.Name = "Residents Data";
 
-                // 3. Write column headers
+                // 3. Format header row
                 for (int i = 1; i <= residentTableview.Columns.Count; i++)
                 {
                     worksheet.Cells[1, i] = residentTableview.Columns[i - 1].HeaderText;
+                    worksheet.Cells[1, i].Font.Bold = true;
+                    worksheet.Cells[1, i].Interior.Color = Excel.XlRgbColor.rgbLightBlue;
+                    worksheet.Cells[1, i].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    worksheet.Cells[1, i].Borders.Weight = Excel.XlBorderWeight.xlThin;
                 }
 
-                // 4. Export data (with proper date formatting)
+                // 4. Export data with special formatting
                 for (int i = 0; i < residentTableview.Rows.Count; i++)
                 {
                     for (int j = 0; j < residentTableview.Columns.Count; j++)
                     {
                         var cellValue = residentTableview.Rows[i].Cells[j].Value;
 
-                        // Check if the column contains dates (e.g., "Birthday")
-                        if (residentTableview.Columns[j].Name == "Birthday" && cellValue is DateTime)
+                        // Format dates
+                        if (residentTableview.Columns[j].Name.ToLower().Contains("date") && cellValue is DateTime)
                         {
-                            // Format date to show only "dd/MM/yyyy" (no time)
-                            worksheet.Cells[i + 2, j + 1] = ((DateTime)cellValue).ToString("dd/MM/yyyy");
-                            worksheet.Cells[i + 2, j + 1].NumberFormat = "dd/MM/yyyy"; 
+                            worksheet.Cells[i + 2, j + 1] = ((DateTime)cellValue).ToString("MM/dd/yyyy");
+                            worksheet.Cells[i + 2, j + 1].NumberFormat = "MM/dd/yyyy";
+                        }
+                        // Highlight senior citizens
+                        else if (residentTableview.Columns[j].Name.ToLower().Contains("age") &&
+                                cellValue != null && int.TryParse(cellValue.ToString(), out int age) &&
+                                age >= 60)
+                        {
+                            worksheet.Cells[i + 2, j + 1] = age;
+                            worksheet.Cells[i + 2, j + 1].Interior.Color = Excel.XlRgbColor.rgbLightYellow;
+                        }
+                        // Format contact numbers
+                        else if (residentTableview.Columns[j].Name.ToLower().Contains("contact"))
+                        {
+                            worksheet.Cells[i + 2, j + 1] = "'" + cellValue?.ToString(); // Preserve leading zeros
                         }
                         else
                         {
@@ -282,9 +299,31 @@ namespace brgyProfiling
                     }
                 }
 
-                // 5. Save the file
+                // 5. Add summary information
+                int lastRow = residentTableview.Rows.Count + 2;
+                worksheet.Cells[lastRow, 1] = "Total Residents:";
+                worksheet.Cells[lastRow, 2] = residentTableview.Rows.Count;
+
+                // Add demographic breakdown
+                worksheet.Cells[lastRow + 1, 1] = "Senior Citizens (60+):";
+                worksheet.Cells[lastRow + 1, 2] = residentTableview.Rows.Cast<DataGridViewRow>()
+                    .Count(r => r.Cells["Age"].Value != null &&
+                           int.TryParse(r.Cells["Age"].Value.ToString(), out int age) &&
+                           age >= 60);
+
+                // Format summary rows
+                Excel.Range summaryRange = worksheet.Range[$"A{lastRow}:B{lastRow + 1}"];
+                summaryRange.Font.Bold = true;
+                summaryRange.Interior.Color = Excel.XlRgbColor.rgbLightGray;
+
+                // 6. Enable Excel features
+                worksheet.Rows[1].AutoFilter();  // Enable filters
+                worksheet.Columns.AutoFit();     // Auto-fit columns
+                worksheet.Columns[1].ColumnWidth = 15; // Set specific width for ID column
+
+                // 7. Save the file
                 string timestamp = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-                string filePath = Path.Combine(reportsDir, $"ResidentsData-{timestamp}.xlsx");
+                string filePath = Path.Combine(reportsDir, $"ResidentsExport-{timestamp}.xlsx");
 
                 if (File.Exists(filePath))
                 {
@@ -292,32 +331,31 @@ namespace brgyProfiling
                 }
 
                 workbook.SaveAs(filePath);
-                MessageBox.Show($"Data exported successfully to: {filePath}", "Export Successful",
-                              MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Residents data exported successfully!\nTotal Residents: {residentTableview.Rows.Count}\nLocation: {filePath}",
+                              "Export Complete",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error exporting data: {ex.Message}", "Export Error",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error exporting residents data:\n{ex.Message}",
+                              "Export Error",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error);
             }
             finally
             {
-                // 6. Proper cleanup (avoid memory leaks)
+                // 8. Proper cleanup
+                if (worksheet != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
                 if (workbook != null)
                 {
                     workbook.Close(false);
                     System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
                 }
-
                 if (excelApp != null)
                 {
                     excelApp.Quit();
                     System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
-                }
-
-                if (worksheet != null)
-                {
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
                 }
             }
         }
