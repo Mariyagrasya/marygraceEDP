@@ -41,7 +41,7 @@ namespace brgyProfiling
                         {
                             // Populate form fields with resident data
                             resID.Text = reader["resID"].ToString();
-                            fname.Text = reader["name"].ToString();  // Changed from firstName to name
+                            fname.Text = reader["name"].ToString();  
                             mname.Text = reader["Mname"].ToString();
                             lname.Text = reader["Lname"].ToString();
                             suffix.Text = reader["suffix"].ToString();
