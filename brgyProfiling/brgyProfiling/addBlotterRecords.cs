@@ -42,65 +42,73 @@ namespace brgyProfiling
 
             try
             {
-                // SQL query to insert a new blotter record
-                string query = @"INSERT INTO blotterrecords 
-                        (blotterID, resID, staffID, reportDate, description, status, resolveDate) 
-                        VALUES 
-                        (@blotterID, @resID, @staffID, @reportDate, @description, @status, @resolveDate)";
-
                 using (MySqlConnection connection = Conn.GetConnection())
                 {
                     connection.Open();
 
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    // Call the stored procedure with exact parameter names
+                    using (MySqlCommand command = new MySqlCommand("RegisterBlotterRecord", connection))
                     {
-                        // Add parameters to prevent SQL injection
-                        command.Parameters.AddWithValue("@blotterID", blotterId);
-                        command.Parameters.AddWithValue("@resID", residentId);
-                        command.Parameters.AddWithValue("@staffID", staffId);
-                        command.Parameters.AddWithValue("@reportDate", reportDate);
-                        command.Parameters.AddWithValue("@description", description);
-                        command.Parameters.AddWithValue("@status", status);
-                        command.Parameters.AddWithValue("@resolveDate", resolveDate);
+                        command.CommandType = CommandType.StoredProcedure;
 
-                        // Execute the query
+                        // Add parameters exactly as defined in the stored procedure
+                        command.Parameters.AddWithValue("@blotterID", blotterId);
+                        command.Parameters.AddWithValue("@reportDate",
+                            string.IsNullOrEmpty(reportDate) ? DateTime.Now : DateTime.Parse(reportDate));
+                        command.Parameters.AddWithValue("@incidentDesc", description);
+                        command.Parameters.AddWithValue("@involvedResidentId", residentId);
+                        command.Parameters.AddWithValue("@staffId", staffId);
+
+                        // Add output parameters for status and resolve date if needed
+                        if (!string.IsNullOrEmpty(status))
+                        {
+                            command.Parameters.AddWithValue("@status", status);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@status", "Pending"); // Default status
+                        }
+
+                        if (!string.IsNullOrEmpty(resolveDate))
+                        {
+                            command.Parameters.AddWithValue("@resolveDate", DateTime.Parse(resolveDate));
+                        }
+
+                        // Execute the stored procedure
                         int rowsAffected = command.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Blotter record added successfully!", "Success",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"Blotter record {blotterId} registered successfully!",
+                                "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            // Optionally redirect back to the blotter management form
-                            blotterRecordsForm blotter = new blotterRecordsForm();
-                            blotter.Show();
+                            // Return to blotter records form
+                            blotterRecordsForm blotterForm = new blotterRecordsForm();
+                            blotterForm.Show();
                             this.Close();
                         }
                         else
                         {
-                            MessageBox.Show("Failed to add blotter record.", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("No records were affected. The blotter ID may already exist.",
+                                "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
             }
-            catch (MySqlException mysqlEx)
+            catch (MySqlException mysqlEx) when (mysqlEx.Number == 1062)
             {
-                if (mysqlEx.Number == 1062) // Duplicate entry error
-                {
-                    MessageBox.Show("Blotter ID already exists.", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    MessageBox.Show("Database error: " + mysqlEx.Message, "Database Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show($"Blotter ID {blotterId} already exists in the system.",
+                    "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Invalid date format. Please use YYYY-MM-DD format.",
+                    "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred: {ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void cancelBtn_Click(object sender, EventArgs e)

@@ -42,13 +42,20 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.reportsTableview = new System.Windows.Forms.DataGridView();
             this.addBtn = new System.Windows.Forms.Button();
-            this.search = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.expiringPermits = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.totalPopulation = new System.Windows.Forms.Panel();
+            this.Men = new System.Windows.Forms.Panel();
+            this.women = new System.Windows.Forms.Panel();
+            this.voters = new System.Windows.Forms.Panel();
             this.sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reportsTableview)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.expiringPermits)).BeginInit();
             this.SuspendLayout();
             // 
             // sidePanel
@@ -200,12 +207,10 @@
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.Controls.Add(this.reportsTableview);
             this.panel1.Controls.Add(this.addBtn);
-            this.panel1.Controls.Add(this.search);
-            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(320, 44);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(900, 599);
+            this.panel1.Size = new System.Drawing.Size(1181, 268);
             this.panel1.TabIndex = 16;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -218,7 +223,7 @@
             this.reportsTableview.RowHeadersWidth = 51;
             this.reportsTableview.RowTemplate.Height = 24;
             this.reportsTableview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.reportsTableview.Size = new System.Drawing.Size(869, 480);
+            this.reportsTableview.Size = new System.Drawing.Size(1146, 144);
             this.reportsTableview.TabIndex = 16;
             // 
             // addBtn
@@ -226,32 +231,13 @@
             this.addBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.addBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.addBtn.Location = new System.Drawing.Point(698, 21);
+            this.addBtn.Location = new System.Drawing.Point(975, 29);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(186, 43);
             this.addBtn.TabIndex = 17;
-            this.addBtn.Text = "Add";
+            this.addBtn.Text = "Add Report";
             this.addBtn.UseVisualStyleBackColor = false;
             this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
-            // 
-            // search
-            // 
-            this.search.Location = new System.Drawing.Point(273, 32);
-            this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(203, 22);
-            this.search.TabIndex = 3;
-            this.search.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(206, 33);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 18);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Search";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -264,12 +250,87 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "List Of Reports";
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.voters);
+            this.panel2.Controls.Add(this.women);
+            this.panel2.Controls.Add(this.Men);
+            this.panel2.Controls.Add(this.totalPopulation);
+            this.panel2.Controls.Add(this.expiringPermits);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Location = new System.Drawing.Point(320, 353);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1181, 421);
+            this.panel2.TabIndex = 18;
+            // 
+            // expiringPermits
+            // 
+            this.expiringPermits.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.expiringPermits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.expiringPermits.Location = new System.Drawing.Point(15, 73);
+            this.expiringPermits.Name = "expiringPermits";
+            this.expiringPermits.RowHeadersWidth = 51;
+            this.expiringPermits.RowTemplate.Height = 24;
+            this.expiringPermits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.expiringPermits.Size = new System.Drawing.Size(1146, 144);
+            this.expiringPermits.TabIndex = 16;
+            this.expiringPermits.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.expiringPermits_CellContentClick);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Navy;
+            this.label3.Location = new System.Drawing.Point(28, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(308, 22);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "List Of Expiring Business Permits";
+            // 
+            // totalPopulation
+            // 
+            this.totalPopulation.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.totalPopulation.Location = new System.Drawing.Point(16, 267);
+            this.totalPopulation.Name = "totalPopulation";
+            this.totalPopulation.Size = new System.Drawing.Size(272, 74);
+            this.totalPopulation.TabIndex = 17;
+            this.totalPopulation.Paint += new System.Windows.Forms.PaintEventHandler(this.totalPopulation_Paint);
+            // 
+            // Men
+            // 
+            this.Men.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Men.Location = new System.Drawing.Point(306, 267);
+            this.Men.Name = "Men";
+            this.Men.Size = new System.Drawing.Size(243, 74);
+            this.Men.TabIndex = 18;
+            this.Men.Paint += new System.Windows.Forms.PaintEventHandler(this.Men_Paint);
+            // 
+            // women
+            // 
+            this.women.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.women.Location = new System.Drawing.Point(565, 267);
+            this.women.Name = "women";
+            this.women.Size = new System.Drawing.Size(243, 74);
+            this.women.TabIndex = 19;
+            this.women.Paint += new System.Windows.Forms.PaintEventHandler(this.women_Paint);
+            // 
+            // voters
+            // 
+            this.voters.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.voters.Location = new System.Drawing.Point(824, 267);
+            this.voters.Name = "voters";
+            this.voters.Size = new System.Drawing.Size(338, 74);
+            this.voters.TabIndex = 20;
+            this.voters.Paint += new System.Windows.Forms.PaintEventHandler(this.voters_Paint);
+            // 
             // reportsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1242, 803);
+            this.ClientSize = new System.Drawing.Size(1513, 803);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.sidePanel);
             this.Name = "reportsForm";
@@ -281,6 +342,9 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reportsTableview)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.expiringPermits)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -299,10 +363,15 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button residentsBtn;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button addBtn;
-        private System.Windows.Forms.TextBox search;
         private System.Windows.Forms.DataGridView reportsTableview;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridView expiringPermits;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel totalPopulation;
+        private System.Windows.Forms.Panel women;
+        private System.Windows.Forms.Panel Men;
+        private System.Windows.Forms.Panel voters;
     }
 }

@@ -39,71 +39,66 @@ namespace brgyProfiling
 
             try
             {
-                // SQL query to insert new report
-                string query = @"INSERT INTO reports 
-                        (reportID, reportName, description, date, staffID) 
-                        VALUES 
-                        (@reportID, @reportName, @description, @date, @staffID)";
-
                 using (MySqlConnection connection = Conn.GetConnection())
                 {
                     connection.Open();
 
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    // Call the stored function with exact parameter names
+                    using (MySqlCommand command = new MySqlCommand("AddReport", connection))
                     {
-                        // Add parameters to prevent SQL injection
-                        command.Parameters.AddWithValue("@reportID", reportId);
-                        command.Parameters.AddWithValue("@reportName", reportName);
-                        command.Parameters.AddWithValue("@description", description);
-                        command.Parameters.AddWithValue("@date", reportDate);
-                        command.Parameters.AddWithValue("@staffID", staffId);
+                        command.CommandType = CommandType.StoredProcedure;
 
-                        // Execute the query
+                        // Add parameters exactly as defined in the stored function
+                        command.Parameters.AddWithValue("@newReportID", reportId);
+                        command.Parameters.AddWithValue("@newReportName", reportName);
+                        command.Parameters.AddWithValue("@newDescription",
+                            string.IsNullOrEmpty(description) ? DBNull.Value : (object)description);
+                        command.Parameters.AddWithValue("@newDate",
+                            string.IsNullOrEmpty(reportDate) ? DateTime.Now : DateTime.Parse(reportDate));
+                        command.Parameters.AddWithValue("@newStaffID", staffId);
+
+                        // Execute the stored procedure
                         int rowsAffected = command.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Report added successfully!", "Success",
+                            MessageBox.Show($"Report {reportId} created successfully!", "Success",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            // Refresh or redirect
-
-                            // Correct instantiation and navigation
-                            reportsForm ReportsForm = new reportsForm();  // Proper class name (PascalCase)
-                            ReportsForm.Show();
+                            // Refresh the reports view
+                            reportsForm reportsForm = new reportsForm();
+                            reportsForm.Show();
                             this.Close();
                         }
                         else
                         {
-                            MessageBox.Show("Failed to add report.", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("No records were affected. The report may already exist.",
+                                "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
             }
-            catch (MySqlException mysqlEx)
+            catch (MySqlException mysqlEx) when (mysqlEx.Number == 1062)
             {
-                if (mysqlEx.Number == 1062) // Duplicate entry error
-                {
-                    MessageBox.Show("Report ID already exists in the system.", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    MessageBox.Show("Database error: " + mysqlEx.Message, "Database Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show($"Report ID {reportId} already exists in the system.",
+                    "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Invalid date format. Please use YYYY-MM-DD format.",
+                    "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred: {ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
-        private void cancelBtn_Click(object sender, EventArgs e)
+        private void cancelBtn_Click_1(object sender, EventArgs e)
         {
+
 
             // Ask for confirmation before canceling
             DialogResult result = MessageBox.Show("Are you sure you want to cancel adding a new household?",
