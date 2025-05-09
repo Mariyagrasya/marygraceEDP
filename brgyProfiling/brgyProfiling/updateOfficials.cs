@@ -72,7 +72,9 @@ namespace brgyProfiling
                     {
                         MessageBox.Show("Official updated successfully!", "Success",
                                       MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.DialogResult = DialogResult.OK;
+
+                        brgyOfficialsForm staff = new brgyOfficialsForm();
+                        staff.Show();
                         this.Close();
                     }
                 }
@@ -85,34 +87,6 @@ namespace brgyProfiling
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void cancelBtn_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
-        private void updateOfficials_Load(object sender, EventArgs e)
-        {
-            // Load roles into combo box
-            try
-            {
-                string query = "SELECT roleID, roleName FROM roles";
-                using (MySqlConnection connection = Conn.GetConnection())
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    connection.Open();
-                    DataTable dt = new DataTable();
-                    dt.Load(command.ExecuteReader());
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading roles: " + ex.Message, "Error",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -134,10 +108,20 @@ namespace brgyProfiling
 
         private void cancelBtn_Click_1(object sender, EventArgs e)
         {
-            // Optionally redirect back to the blotter management form
-            brgyOfficialsForm staff = new brgyOfficialsForm();
-            staff.Show();
-            this.Close();
+            // Ask for confirmation before canceling
+            DialogResult result = MessageBox.Show("Are you sure you want to cancel?",
+                                                "Confirm Cancel",
+                                                MessageBoxButtons.YesNo,
+                                                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+
+
+                brgyOfficialsForm staff = new brgyOfficialsForm();
+                staff.Show();
+                this.Close();
+            }
         }
     }
 }
