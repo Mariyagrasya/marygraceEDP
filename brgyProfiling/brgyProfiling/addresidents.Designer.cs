@@ -449,6 +449,7 @@
             this.Controls.Add(this.resID);
             this.Controls.Add(this.label4);
             this.Name = "addresidents";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "addresidents";
             this.Load += new System.EventHandler(this.addresidents_Load);
             this.ResumeLayout(false);

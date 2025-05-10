@@ -169,6 +169,7 @@
             this.Controls.Add(this.voterID);
             this.Controls.Add(this.label4);
             this.Name = "addVoter";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "addVoter";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -191,6 +191,7 @@
             this.Controls.Add(this.reportID);
             this.Controls.Add(this.label4);
             this.Name = "addReport";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "addReport";
             this.ResumeLayout(false);
             this.PerformLayout();

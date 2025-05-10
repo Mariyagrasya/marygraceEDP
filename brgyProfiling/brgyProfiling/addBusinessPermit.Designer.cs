@@ -191,6 +191,7 @@
             this.Controls.Add(this.permitID);
             this.Controls.Add(this.label4);
             this.Name = "addBusinessPermit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "addBusinessPermit";
             this.ResumeLayout(false);
             this.PerformLayout();

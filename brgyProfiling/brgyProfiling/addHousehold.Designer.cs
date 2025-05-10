@@ -173,6 +173,7 @@
             this.Controls.Add(this.householdID);
             this.Controls.Add(this.label4);
             this.Name = "addHousehold";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "addHousehold";
             this.ResumeLayout(false);
             this.PerformLayout();

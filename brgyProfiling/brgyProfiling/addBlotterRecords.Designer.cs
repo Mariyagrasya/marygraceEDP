@@ -237,6 +237,7 @@
             this.Controls.Add(this.blotterID);
             this.Controls.Add(this.label4);
             this.Name = "addBlotterRecords";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "addBlotterRecords";
             this.ResumeLayout(false);
             this.PerformLayout();

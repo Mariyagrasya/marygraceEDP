@@ -150,6 +150,7 @@
             this.Controls.Add(this.staffID);
             this.Controls.Add(this.label4);
             this.Name = "updateOfficials";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "updateOfficials";
             this.ResumeLayout(false);
             this.PerformLayout();
