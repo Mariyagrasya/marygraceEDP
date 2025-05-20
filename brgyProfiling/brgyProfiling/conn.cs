@@ -1,21 +1,15 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Mysqlx.Expect.Open.Types.Condition.Types;
-
+﻿using System; // For Exception
+using System.Windows.Forms; // For MessageBox
+using System.Configuration; // For ConfigurationManager
+using MySql.Data.MySqlClient; // For MySqlConnection
 
 namespace brgyProfiling
 {
     internal static class Conn
     {
-        // Connection string (update with your database details)
-        private static readonly string connectionString = "Server=localhost; Database=brgyprofilingsys; uid=root; Password=159632;";
+        private static readonly string connectionString =
+            ConfigurationManager.ConnectionStrings["BrgyDbConnection"].ConnectionString;
 
-        // Method to get a MySQL connection
         public static MySqlConnection GetConnection()
         {
             try
@@ -24,7 +18,7 @@ namespace brgyProfiling
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error creating database connection: " + ex.Message);
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
